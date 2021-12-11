@@ -37,6 +37,7 @@ spec:
           volumeMounts:
             - mountPath: /csi
               name: socket-dir
+{{ if .Values.csiResizer.enable }}
         - name: csi-resizer
           image: {{ .Values.images.csiResizer }}
           args:
@@ -44,6 +45,7 @@ spec:
             - "--timeout=300s"
             - "--csi-address=$(ADDRESS)"
             - "--leader-election"
+{{ end }}
           env:
             - name: ADDRESS
               value: /csi/csi.sock

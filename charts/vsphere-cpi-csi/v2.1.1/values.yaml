@@ -8,12 +8,15 @@ images:
   csiResizer: "quay.io/k8scsi/csi-resizer:v1.0.0"
   nodeDriverRegistrar: "quay.io/k8scsi/csi-node-driver-registrar:v2.0.1"
 
+csiResizer:
+  enable: false
+
 vcenter:
-  # host: vcenter.example.com
+  host: vcenter.gov.pf
   insecurehost: true
-  # username: admin 
-  # password: root
-  # datacenter: DC1
+  username: admin
+  password: root
+  datacenter: DC1
 
 kubelet:
   path: /var/lib/kubelet
@@ -22,5 +25,4 @@ storageclass:
   name: vsphere-csi
   default: true
   fstype: ext4
-  # storagepolicyname: my-storage-policy
-  # datastoreurl: ds:///vmfs/volumes/vsan:528c27f173c2088e-2126e911985dc3aa/
+  storagepolicyname: "VM Storage Policy for PersistentVolume"
